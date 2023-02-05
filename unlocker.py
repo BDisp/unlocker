@@ -48,6 +48,11 @@ import re
 import struct
 import sys
 
+#you need to install 
+# windows: python -m pip install psutil
+# linux: sudo pip install --upgrade psutil
+import psutil 
+
 if sys.version_info < (2, 7):
     sys.stderr.write('You need Python 2.7 or later\n')
     sys.exit(1)
@@ -349,6 +354,21 @@ def patchvmkctl(name):
     f.close()
     print('smcPresent Patched: ' + name)
 
+# kill things that may interfere the unlocker such as vmware-authd, vmware-hostd, vmware-usbarbitrator64
+# otherwise this error may pop up during unlocker execution: PermissionError: [Errno 13] Permission denied: path/to/a_vmware_file
+def killvmprocesses():
+    process_name = "vmware-"
+
+    try:
+        for proc in psutil.process_iter():
+            # check whether the process name matches
+            if process_name in proc.name():
+                proc.kill()
+    
+        print("VM processes vmware-* successfully terminated")
+         
+    except:
+        print("Could not terminate some vmware-* processes")
 
 # noinspection PyUnresolvedReferences
 def main():
@@ -386,6 +406,8 @@ def main():
     else:
         print('Unknown Operating System: ' + osname)
         return
+
+    killvmprocesses()
 
     # Patch the vmx executables skipping stats version for Player
     patchsmc(vmx, vmx_so)
