@@ -27,13 +27,11 @@ elif [ -d /usr/lib/vmware/lib/libvmwarebase.so/ ]; then
     cp -v /usr/lib/vmware/lib/libvmwarebase.so/libvmwarebase.so ./backup-linux/
 fi
 
-pyversion=""
-if command -v python &> /dev/null; then
-    pyversion="python"
-elif command -v python3 &> /dev/null; then
-    pyversion="python3"
+if [ -z "$PYVERSION" ]; then; PYVERSION=""; fi
+if command -v python3 &> /dev/null; then
+    PYVERSION="python3"
 else
-    echo "python could not be found"
+    echo "Python 3 could not be found."
     exit
 fi
 

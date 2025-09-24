@@ -15,13 +15,11 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-pyversion=""
-if command -v python &> /dev/null; then
-    pyversion="python"
-elif command -v python3 &> /dev/null; then
-    pyversion="python3"
+if [ -z "$PYVERSION" ]; then; PYVERSION=""; fi
+if command -v python3 &> /dev/null; then
+    PYVERSION="python3"
 else
-    echo "python could not be found"
+    echo "Python 3 could not be found."
     exit
 fi
 
