@@ -6,7 +6,7 @@ macOS Unlocker V3.0 for VMware Workstation
 
 WINDOWS USERS: Get the tool from the Releases section, you will get a bundled python distribution that avoids the virus warnings and python not found etc.
 
-LINUX USERS: No bundled python for you, but make sure you have python 3.0+ installed. If you have errors like "Python not supported" but you have python installed, change the lines inside of lnx-install.sh from 'python xxxxxxx.py' to 'python3.7 xxxxxxx.py' (if you have python 3.7 installed, otherwise try python3 or other stuff)
+LINUX USERS: No bundled python for you, but make sure you have python 3.0+ installed. If you have errors like "Python not supported" but you have python installed, run the script with `PYVERSION=python3.7` (if you have python 3.7 installed, otherwise try python3 or other stuff)
 
 ***
 <table align="center"><tr><td align="center" width="9999">
@@ -50,7 +50,7 @@ The code is written in Python.
 ### 2. Prerequisites
 ----------------
 
-The code requires Python 2.7 or later to work. Most Linux distros ship with a compatible
+The code requires Python 3.0 or later to work. Most Linux distros ship with a compatible
 Python interpreter and should work without requiring any additional software.
 
 Windows Unlocker has a packaged version of the Python script using PyInstaller, 
