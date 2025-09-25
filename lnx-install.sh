@@ -27,7 +27,7 @@ elif [ -d /usr/lib/vmware/lib/libvmwarebase.so/ ]; then
     cp -v /usr/lib/vmware/lib/libvmwarebase.so/libvmwarebase.so ./backup-linux/
 fi
 
-if [ -z "$PYVERSION" ]; then; PYVERSION=""; fi
+if [ -z "$PYVERSION" ]; then PYVERSION=""; fi
 if command -v python3 &> /dev/null; then
     PYVERSION="python3"
 else
@@ -36,10 +36,10 @@ else
 fi
 
 echo Patching...
-$pyversion ./unlocker.py
+$PYVERSION ./unlocker.py
 
 echo Getting VMware Tools...
-$pyversion gettools.py
+$PYVERSION gettools.py
 cp ./tools/darwin*.* /usr/lib/vmware/isoimages/
 
 echo Finished!

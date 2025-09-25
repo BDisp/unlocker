@@ -15,7 +15,7 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-if [ -z "$PYVERSION" ]; then; PYVERSION=""; fi
+if [ -z "$PYVERSION" ]; then PYVERSION=""; fi
 if command -v python3 &> /dev/null; then
     PYVERSION="python3"
 else
@@ -24,7 +24,7 @@ else
 fi
 
 echo Getting VMware Tools...
-$pyversion gettools.py
+$PYVERSION gettools.py
 cp ./tools/darwin*.* /usr/lib/vmware/isoimages/
 
 echo Finished!
