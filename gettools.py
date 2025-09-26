@@ -123,7 +123,7 @@ def GetResponseFromUrl(url):
         response = urlopen( req )
         return response
     except:
-        print('Couldn\'t read page')
+        print("Couldn't read page: " + url)
         return False
 
 # Function to download a file
