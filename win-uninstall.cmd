@@ -1,38 +1,31 @@
 @echo off
 setlocal ENABLEEXTENSIONS
 echo.
-echo Unlocker 3.0.4 for VMware Workstation
+rem --- Get app version ---
+call win-helper-functions.cmd get_app_version
+echo Unlocker %APPVERSION% for VMware Workstation
 echo =====================================
 echo (c) Dave Parsons 2011-18
 
-net session >NUL 2>&1
-if %errorlevel% neq 0 (
-    echo Administrator privileges required! 
-    exit
+rem --- Require admin ---
+call win-helper-functions.cmd check_admin
+if "%IS_ADMIN%"=="0" (
+    echo Administrator privileges required!
+    exit /b 1
 )
 
 echo.
-set KeyName="HKLM\SOFTWARE\Wow6432Node\VMware, Inc.\VMware Player"
-:: delims is a TAB followed by a space
-for /F "tokens=2* delims=	 " %%A in ('REG QUERY %KeyName% /v InstallPath') do set InstallPath=%%B
-if "%InstallPath%" == "" (
-    echo VMware is not installed
+rem --- Detect VMware installation ---
+call win-helper-functions.cmd detect_vmware
+if "%VMWARE_INSTALLED%" == "0" (
     exit /b
-) else (
-    echo VMware is installed at: "%InstallPath%"
 )
-for /F "tokens=2* delims=	 " %%A in ('REG QUERY %KeyName% /v ProductVersion') do set ProductVersion=%%B
-echo VMware product version: %ProductVersion%
 
 pushd %~dp0
 
 echo.
-echo Stopping VMware services...
-net stop vmware-view-usbd > NUL 2>&1
-net stop VMwareHostd > NUL 2>&1
-net stop VMAuthdService > NUL 2>&1
-net stop VMUSBArbService > NUL 2>&1
-taskkill /F /IM vmware-tray.exe > NUL 2>&1
+rem --- Stop VMware services ---
+call win-helper-functions.cmd stop_vmware_services
 
 echo.
 echo Restoring files...
@@ -46,11 +39,8 @@ rd /s /q .\backup-windows > NUL 2>&1
 rd /s /q .\tools > NUL 2>&1
 
 echo.
-echo Starting VMware services...
-net start VMUSBArbService > NUL 2>&1
-net start VMAuthdService > NUL 2>&1
-net start VMwareHostd > NUL 2>&1
-net start vmware-view-usbd > NUL 2>&1
+rem --- Start VMware services ---
+call win-helper-functions.cmd start_vmware_services
 
 popd
 echo.

@@ -1,30 +1,25 @@
 #!/bin/bash
 
+# Source the helper
+source lnx-helper-functions.sh
+
 set -e
 
-echo "Get macOS VMware Tools 3.0.4"
+echo "Get macOS VMware Tools $(get_app_version)"
 echo "==============================="
 echo "(c) Dave Parsons 2015-18"
 
 # Ensure we only use unmodified commands
-export PATH=/bin:/sbin:/usr/bin:/usr/sbin
+restrict_path
 
 # Make sure only root can run our script
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 1>&2
-   exit 1
-fi
+require_root
 
-if [ -z "$PYVERSION" ]; then PYVERSION=""; fi
-if command -v python3 &> /dev/null; then
-    PYVERSION="python3"
-else
-    echo "Python 3 could not be found."
-    exit
-fi
+# Detect VMware installation
+detect_vmware
 
-echo Getting VMware Tools...
-$PYVERSION gettools.py
-cp ./tools/darwin*.* /usr/lib/vmware/isoimages/
+# Detect Python installation
+check_python3
 
-echo Finished!
+# Get VMware Tools
+get_vmware_tools

@@ -1,18 +1,22 @@
 #!/bin/bash
+
+# Source the helper
+source lnx-helper-functions.sh
+
 set -e
 
-echo "Unlocker 3.0.4 for VMware Workstation"
+echo "Unlocker $(get_app_version) for VMware Workstation"
 echo "====================================="
 echo "(c) Dave Parsons 2011-18"
 
 # Ensure we only use unmodified commands
-export PATH=/bin:/sbin:/usr/bin:/usr/sbin
+restrict_path
 
 # Make sure only root can run our script
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 1>&2
-   exit 1
-fi
+require_root
+
+# Detect VMware installation
+detect_vmware
 
 echo Restoring files...
 cp -v ./backup-linux/vmware-vmx  /usr/lib/vmware/bin/
