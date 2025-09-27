@@ -48,28 +48,21 @@ import re
 import struct
 import sys
 
-if sys.version_info < (2, 7):
-    sys.stderr.write('You need Python 2.7 or later\n')
+# Check minimal Python version is 3
+if sys.version_info < (3, 0):
+    sys.stderr.write('You need Python 3 or later\n')
     sys.exit(1)
 
 # Setup imports depending on whether IronPython or CPython
 if sys.platform == 'win32' \
         or sys.platform == 'cli':
     # noinspection PyUnresolvedReferences
-    if sys.version_info > (3, 0):
-        from winreg import *
-    else:
-        from _winreg import *
+    from winreg import *
 
 
 
 def bytetohex(data):
-    if sys.version_info > (3, 0):
-        # Python 3 code in this block
-        return "".join("{:02X} ".format(c) for c in data)
-    else:
-        # Python 2 code in this block
-        return "".join("{:02X} ".format(ord(c)) for c in data)
+    return "".join("{:02X} ".format(c) for c in data)
 
 
 def joinpath(folder, filename):

@@ -45,18 +45,14 @@ from __future__ import print_function
 import struct
 import sys
 
-if sys.version_info < (2, 7):
-    sys.stderr.write('You need Python 2.7 or later\n')
+# Check minimal Python version is 3
+if sys.version_info < (3, 0):
+    sys.stderr.write('You need Python 3 or later\n')
     sys.exit(1)
 
 
 def bytetohex(data):
-    if sys.version_info > (3, 0):
-        # Python 3 code in this block
-        return "".join("{:02X} ".format(c) for c in data)
-    else:
-        # Python 2 code in this block
-        return "".join("{:02X} ".format(ord(c)) for c in data)
+    return "".join("{:02X} ".format(c) for c in data)
 
 
 def printkey(i, offset, smc_key, smc_data):

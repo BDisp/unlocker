@@ -31,21 +31,17 @@ import tarfile
 import zipfile
 import time
 
-try:
-    # For Python 3.0 and later
-    import urllib
-    # noinspection PyCompatibility
-    from urllib.request import urlopen, Request, urlretrieve, install_opener
-    # noinspection PyCompatibility
-    from html.parser import HTMLParser
-except ImportError:
-    # Fall back to Python 2
-    # noinspection PyCompatibility
-    import urllib2
-    # noinspection PyCompatibility
-    from urllib2 import urlopen, Request
-    # noinspection PyCompatibility
-    from HTMLParser import HTMLParser
+# For Python 3.0 and later
+import urllib
+# noinspection PyCompatibility
+from urllib.request import urlopen, Request, urlretrieve, install_opener
+# noinspection PyCompatibility
+from html.parser import HTMLParser
+
+# Check minimal Python version is 3
+if sys.version_info < (3, 0):
+    sys.stderr.write('You need Python 3 or later\n')
+    sys.exit(1)
 
 
 # Parse the Fusion directory page
@@ -66,13 +62,7 @@ class CDSParser(HTMLParser):
     def clean(self):
         self.HTMLDATA = []
 
-if sys.version_info > (3, 0):
-# Python 3 code in this block
     pass
-else:
-    # Python 2 code in this block
-    class MyURLopener(urllib.FancyURLopener):
-        http_error_default = urllib.URLopener.http_error_default
 
 def convertpath(path):
     # OS path separator replacement function
@@ -99,12 +89,7 @@ def CheckToolsFilesExists(dest):
     if filesFound:
         while True:
             # Ask if the user want to download again
-            if sys.version_info > (3, 0):
-            # Python 3 code in this block
-                userResponse = input(askMsg)
-            else:
-                # Python 2 code in this block
-                userResponse = raw_input(askMsg)
+            userResponse = input(askMsg)
             
             if str(userResponse).upper() == 'Y':
                 return False
@@ -185,17 +170,10 @@ def DownloadAndExtractTarFile(url, dest):
     print('Retrieving Darwin tools from: ' + urlpost15)
     try:
         # Try to get tools from packages folder
-        if sys.version_info > (3, 0):
-            # Python 3 code in this block
-            opener = urllib.request.build_opener()
-            opener.addheaders = [('User-Agent','Magic Browser')]
-            install_opener(opener)
-            urlretrieve(urlpost15, convertpath(dest + '/tools/' + tarName), reporthook)
-        else:
-            # Python 2 code in this block
-            opener = MyURLopener()
-            opener.Version = [('User-Agent','Magic Browser')]
-            (f,headers)=opener.retrieve(urlpost15, convertpath(dest + '/tools/' + tarName), reporthook)
+        opener = urllib.request.build_opener()
+        opener.addheaders = [('User-Agent','Magic Browser')]
+        install_opener(opener)
+        urlretrieve(urlpost15, convertpath(dest + '/tools/' + tarName), reporthook)
     except:
         print('Couldn\'t find tools in ' + url)
         return False
@@ -239,11 +217,6 @@ def DownloadAndExtractTarFile(url, dest):
         os.remove(convertpath(dest + '/tools/' + zipName))
 
 def main():
-    # Check minimal Python version is 2.7
-    if sys.version_info < (2, 7):
-        sys.stderr.write('You need Python 2.7 or later\n')
-        sys.exit(1)
-
     dest = os.getcwd()
 
     # Try local file check
