@@ -116,5 +116,6 @@ Windows Unlocker使用PyInstaller将Python脚本打包，因此无需安装Pytho
 | 11/11/2024 | 3.0.8 | 修復了達爾文找不到文件的 gettools
 | 24/03/2025 | 3.0.9 | 修复了 gettools 的 IndexError：列表索引超出范围
 | 28/03/2025 | 3.1.0 | 已修复错误：\VMware\VMware 此时是意外的。
+| 27/09/2025 | 3.1.1 | 移除对 Python 2 的支持。
 
 (c) 2011-2018 Dave Parsons
