@@ -1,7 +1,13 @@
 from __future__ import print_function
 
+import sys
 import shutil
 import unlocker
+
+# Check minimal Python version is 3
+if sys.version_info < (3, 0):
+    sys.stderr.write('You need Python 3 or later\n')
+    sys.exit(1)
 
 
 def main():

@@ -1,25 +1,36 @@
 用于 VMware Workstation 的 macOS Unlocker V3.0
 ==============================================
 
+***
+### <div align="center">请在此处阅读：</div>
+
+Windows用户：请从“版本发布”页面下载工具，该版本已预装了Python环境，可以避免因缺少Python而导致的病毒警告或其他问题。
+
+Linux用户：Linux版本不包含预装的Python环境，请确保您已安装Python 3.0及以上版本。如果出现“不支持Python”之类的错误（但您已安装了Python），请尝试使用以下命令运行脚本：`PYVERSION=python3.7`（前提是您已安装了Python 3.7，否则请尝试使用python3或其他版本）。   
+
+***
 <table align="center"><tr><td align="center" width="9999">
-   
-| 重要提醒： 
+
+| 重要的：
 | ---
-| 请在使用新版本 Unlocker 前卸载旧版本,否则 VMWare 可能会无法使用。
+| 在使用新版本Unlocker之前，务必先卸载旧版本。
+| 如果未能完成此步骤，VMware可能无法正常运行。
 
 </td></tr></table>
+
+***
 
 ### 1. 介绍
 -------
 
-Unlocker 3 适用于 VMware Workstation 11-16 以及 Player 7-16。
+Unlocker 3 适用于 VMware Workstation 11-17 以及 Player 7-17。
 
 如果您正使用早期版本的 VMWare，请继续使用 Unlocker 1。
 
 Unlocker 3 已对以下情况进行了测试：
 
-* 在 Windows 或 Linux 上的 Workstation 11/12/14/15/16
-* 在 Windows 或 Linux 上的 Workstation Player 7/12/14/15/16
+* 在 Windows 或 Linux 上的 Workstation 11/12/14/15/16/17
+* 在 Windows 或 Linux 上的 Workstation Player 7/12/14/15/16/17
 
 根据所修补的产品，本代码会作出以下修改：
 
@@ -27,8 +38,8 @@ Unlocker 3 已对以下情况进行了测试：
 * 修补 vmwarebase .dll 或 .so，以允许创建虚拟机过程中选择 Apple 作为客户机操作系统。
 * 下载一份最新的用于 Mac OS 的 VMWare Tools 副本。
 
-请注意，并非所有的 VMWare 版本都能通过“安装 VMWare Tools”菜单项识别 darwin.iso。
-例如，在 Workstation 11、Player 7上，您需要手动挂载 darwin.iso。
+请注意，并非所有产品都能通过安装工具菜单项识别 darwin.iso 文件。
+例如，在Workstation 11和Player 7中，您需要手动挂载darwin.iso文件。
 
 无论何时都请确保 VMware 未在运行且所有后台的客户机都已关闭。
 
@@ -37,11 +48,9 @@ Unlocker 3 已对以下情况进行了测试：
 ### 2. 先决条件
 -----------
 
-本代码需要 Python 2.7 以正常工作。大多数 Linux 发行版都附带一个兼容的 Python 解释器，
-因此本代码应可在不需要任何额外软件的情况下工作。
+该程序需要Python 3.0或更高版本才能运行。大多数Linux发行版都预装了兼容的Python解释器，因此无需额外安装任何软件即可运行。
 
-Windows 版本的 Unlocker 有一个使用 PyInstaller 的打包版 Python 脚本，因此无需在计算机
-上安装 Python。
+Windows Unlocker使用PyInstaller将Python脚本打包，因此无需安装Python即可运行。
 
 ### 3. 限制
 -------

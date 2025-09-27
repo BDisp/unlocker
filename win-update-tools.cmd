@@ -1,34 +1,25 @@
 @echo off
 setlocal ENABLEEXTENSIONS
-echo Get macOS VMware Tools 3.0.4
+
+rem --- Get app version ---
+call win-helper-functions.cmd get_app_version
+echo Get macOS VMware Tools %APPVERSION%
 echo ===============================
 echo (c) Dave Parsons 2011-18
-
-net session >NUL 2>&1
-if %errorlevel% neq 0 (
-    echo Administrator privileges required! 
-    exit
+echo.
+rem --- Require admin ---
+call win-helper-functions.cmd check_admin
+if "%IS_ADMIN%"=="0" (
+    echo Administrator privileges required!
+    exit /b 1
 )
 
 pushd %~dp0
 
-set KeyName="HKLM\SOFTWARE\Wow6432Node\VMware, Inc.\VMware Player"
-:: delims is a TAB followed by a space
-for /F "tokens=2* delims=	 " %%A in ('REG QUERY %KeyName% /v InstallPath') do set InstallPath=%%B
-if "%InstallPath%" == "" (
-    echo VMware is not installed
-) else (
-    echo VMware is installed at: "%InstallPath%"
-)
-for /F "tokens=2* delims=	 " %%A in ('REG QUERY %KeyName% /v ProductVersion') do set ProductVersion=%%B
-echo VMware product version: %ProductVersion%
+rem --- Detect VMware installation ---
+call win-helper-functions.cmd detect_vmware
 
-echo Getting VMware Tools...
-gettools.exe
-if NOT "%InstallPath%" == "" (
-    xcopy /F /Y .\tools\darwin*.* "%InstallPath%"
-)
+rem --- Download and copy tools ---
+call win-helper-functions.cmd get_vmware_tools
 
 popd
-
-echo Finished!

@@ -13,8 +13,8 @@ LINUX USERS: No bundled python for you, but make sure you have python 3.0+ insta
 
 | IMPORTANT:
 | ---
-| Always uninstall the previous version of the Unlocker before using a new
-| version. Failure to do this could render VMware unusable.
+| Always uninstall the previous version of the Unlocker before using a new version.
+| Failure to do this could render VMware unusable.
 
 </td></tr></table>
 
@@ -23,14 +23,14 @@ LINUX USERS: No bundled python for you, but make sure you have python 3.0+ insta
 ### 1. Introduction
 ---------------
 
-Unlocker 3 is designed for VMware Workstation 11-16 and Player 7-16.
+Unlocker 3 is designed for VMware Workstation 11-17 and Player 7-17.
 
 If you are using an earlier product please continue using Unlocker 1.
 
 Version 3 has been tested against:
 
-* Workstation 11/12/14/15/16 on Windows and Linux
-* Workstation Player 7/12/14/15/16 on Windows and Linux
+* Workstation 11/12/14/15/16/17 on Windows and Linux
+* Workstation Player 7/12/14/15/16/17 on Windows and Linux
 
 The patch code carries out the following modifications dependent on the product
 being patched:
@@ -39,7 +39,7 @@ being patched:
 * Fix vmwarebase .dll or .so to allow Apple to be selected during VM creation
 * Download a copy of the latest VMware Tools for macOS
 
-Note that not all products recognise the darwin.iso via install tools menu item.
+Note that not all products recognize the darwin.iso via install tools menu item.
 You will have to manually mount the darwin.iso for example on Workstation 11 and Player 7.
 
 In all cases make sure VMware is not running, and any background guests have
