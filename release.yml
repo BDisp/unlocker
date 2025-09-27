@@ -1,0 +1,31 @@
+name: Release Packages
+
+on:
+  push:
+    tags:
+      - "v*"   # runs only when pushing a tag like v1.2.3
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zip
+
+      - name: Run packaging script
+        run: |
+          chmod +x ./package.sh
+          ./package.sh
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            Unlocker-Linux-*.tar.gz
+            Unlocker-Windows-*.zip

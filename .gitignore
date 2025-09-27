@@ -10,3 +10,4 @@ dist/
 *.pyc
 /.vs
 /.vscode
+/release
