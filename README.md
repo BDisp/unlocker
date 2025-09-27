@@ -121,5 +121,6 @@ History
 | 11/11/2024 | 3.0.8 | Fixed gettools for File not found darwin
 | 24/03/2025 | 3.0.9 | Fixed gettools for IndexError: list index out of range
 | 28/03/2025 | 3.1.0 | Fixed Error: \VMware\VMware was unexpected at this time.
+| 27/09/2025 | 3.1.1 | Remove Python 2 support.
 
 (c) 2011-2018 Dave Parsons
