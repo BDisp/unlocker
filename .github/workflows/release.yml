@@ -1,0 +1,24 @@
+name: Create Release Assets
+
+on:
+  push:
+    tags:
+      - 'v*'  # or your tag pattern
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run packaging script
+        run: bash ./package.sh
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            release/Unlocker-Windows-*.zip
+            release/Unlocker-Linux-*.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
