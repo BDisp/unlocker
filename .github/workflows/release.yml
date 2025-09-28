@@ -3,7 +3,7 @@ name: Create Release Assets
 on:
   push:
     tags:
-      - '*'  # or your tag pattern
+      - '*'  # Trigger on any tag
 
 jobs:
   build:
@@ -14,11 +14,12 @@ jobs:
       - name: Run packaging script
         run: bash ./package.sh
 
-      - name: Upload release assets
+      - name: Upload release assets & generate notes
         uses: softprops/action-gh-release@v1
         with:
           files: |
             release/Unlocker-Windows-*.zip
             release/Unlocker-Linux-*.tar.gz
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
