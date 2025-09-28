@@ -3,7 +3,7 @@ name: Create Release Assets
 on:
   push:
     tags:
-      - 'v*'  # or your tag pattern
+      - '*'  # or your tag pattern
 
 jobs:
   build:
