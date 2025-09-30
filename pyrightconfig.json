@@ -1,0 +1,19 @@
+{
+  // Assume Windows environment so winreg and other Windows-only modules are available
+  "pythonPlatform": "Windows",
+
+  // Point to your source if not at repo root (optional)
+  "include": [ "." ],
+
+  // Match Pylance defaults (what VS 2022 is showing you)
+  "typeCheckingMode": "basic",
+
+  // Keep useful checks
+  "reportUnboundVariable": "error",
+  "reportAttributeAccessIssue": "error",
+  "reportWildcardImportFromLibrary": "warning",
+
+  // Disable overly strict stuff you don�t want in CI
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none"
+}

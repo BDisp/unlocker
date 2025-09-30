@@ -56,8 +56,7 @@ if sys.version_info < (3, 0):
 # Setup imports depending on whether IronPython or CPython
 if sys.platform == 'win32' \
         or sys.platform == 'cli':
-    # noinspection PyUnresolvedReferences
-    from winreg import *
+    from winreg import ConnectRegistry, HKEY_LOCAL_MACHINE, OpenKey, QueryValueEx
 
 
 
@@ -343,7 +342,6 @@ def patchvmkctl(name):
     print('smcPresent Patched: ' + name)
 
 
-# noinspection PyUnresolvedReferences
 def main():
     # Work around absent Platform module on VMkernel
     if os.name == 'nt' or os.name == 'cli':
