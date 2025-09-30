@@ -37,11 +37,11 @@ if not defined INSTALLPATH (
     echo VMware is not installed
 ) else (
     set "VMWARE_INSTALLED=1"
-    echo VMware is installed at: "%InstallPath%"
+    echo VMware is installed at: "%INSTALLPATH%"
     setlocal EnableDelayedExpansion
     for /F "tokens=2* delims=	 " %%A in ('REG QUERY %KeyName% /v ProductVersion') do set ProductVersion=%%B
     echo VMware product version: !ProductVersion!
-    setlocal DisableDelayedExpansion
+    endlocal
 )
 
 endlocal & set "INSTALLPATH=%INSTALLPATH%" & set "VMWARE_INSTALLED=%VMWARE_INSTALLED%"
@@ -99,8 +99,8 @@ echo Backing up files...
 rd /s /q .\backup-windows > NUL 2>&1
 mkdir .\backup-windows
 mkdir .\backup-windows\x64
-xcopy /F /Y "%InstallPath%x64\vmware-vmx.exe" .\backup-windows\x64
-xcopy /F /Y "%InstallPath%x64\vmware-vmx-debug.exe" .\backup-windows\x64
-xcopy /F /Y "%InstallPath%x64\vmware-vmx-stats.exe" .\backup-windows\x64
-xcopy /F /Y "%InstallPath%vmwarebase.dll" .\backup-windows\
+xcopy /F /Y "%INSTALLPATH%x64\vmware-vmx.exe" .\backup-windows\x64
+xcopy /F /Y "%INSTALLPATH%x64\vmware-vmx-debug.exe" .\backup-windows\x64
+xcopy /F /Y "%INSTALLPATH%x64\vmware-vmx-stats.exe" .\backup-windows\x64
+xcopy /F /Y "%INSTALLPATH%vmwarebase.dll" .\backup-windows\
 goto :EOF

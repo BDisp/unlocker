@@ -41,7 +41,7 @@ python unlocker.py
 echo.
 echo Getting VMware Tools...
 python gettools.py
-xcopy /F /Y .\tools\darwin*.* "%InstallPath%"
+xcopy /F /Y .\tools\darwin*.* "%INSTALLPATH%"
 
 echo.
 rem --- Start VMware services ---
