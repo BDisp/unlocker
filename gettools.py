@@ -31,11 +31,7 @@ import tarfile
 import zipfile
 import time
 
-# For Python 3.0 and later
-import urllib
-# noinspection PyCompatibility
-from urllib.request import urlopen, Request, urlretrieve, install_opener
-# noinspection PyCompatibility
+from urllib.request import urlopen, build_opener, install_opener, Request, urlretrieve
 from html.parser import HTMLParser
 
 # Check minimal Python version is 3
@@ -69,11 +65,10 @@ def convertpath(path):
     return path.replace(os.path.sep, '/')
 
 def reporthook(count, block_size, total_size):
-    global start_time
     if count == 0:
-        start_time = time.time()
+        reporthook.start_time = time.time()
         return
-    duration = time.time() - start_time
+    duration = time.time() - reporthook.start_time
     progress_size = int(count * block_size)
     speed = int(progress_size / (1024 * duration)) if duration>0 else 0
     percent = min(int(count*block_size*100/total_size),100)
@@ -170,7 +165,7 @@ def DownloadAndExtractTarFile(url, dest):
     print('Retrieving Darwin tools from: ' + urlpost15)
     try:
         # Try to get tools from packages folder
-        opener = urllib.request.build_opener()
+        opener = build_opener()
         opener.addheaders = [('User-Agent','Magic Browser')]
         install_opener(opener)
         urlretrieve(urlpost15, convertpath(dest + '/tools/' + tarName), reporthook)
