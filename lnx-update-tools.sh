@@ -16,7 +16,7 @@ restrict_path
 require_root
 
 # Detect VMware installation
-detect_vmware
+detect_vmware || true
 
 # Detect Python installation
 check_python3

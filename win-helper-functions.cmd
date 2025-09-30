@@ -38,9 +38,11 @@ if not defined INSTALLPATH (
 ) else (
     set "VMWARE_INSTALLED=1"
     echo VMware is installed at: "%InstallPath%"
+    setlocal EnableDelayedExpansion
+    for /F "tokens=2* delims=	 " %%A in ('REG QUERY %KeyName% /v ProductVersion') do set ProductVersion=%%B
+    echo VMware product version: !ProductVersion!
+    setlocal DisableDelayedExpansion
 )
-for /F "tokens=2* delims=	 " %%A in ('REG QUERY %KeyName% /v ProductVersion') do set ProductVersion=%%B
-echo VMware product version: %ProductVersion%
 
 endlocal & set "INSTALLPATH=%INSTALLPATH%" & set "VMWARE_INSTALLED=%VMWARE_INSTALLED%"
 goto :EOF
