@@ -29,9 +29,9 @@ call win-helper-functions.cmd stop_vmware_services
 
 echo.
 echo Restoring files...
-xcopy /F /Y .\backup-windows\x64\*.* "%InstallPath%x64\"
-xcopy /F /Y .\backup-windows\*.* "%InstallPath%"
-del /f "%InstallPath%"darwin*.*
+xcopy /F /Y .\backup-windows\x64\*.* "%INSTALLPATH%x64\"
+xcopy /F /Y .\backup-windows\*.* "%INSTALLPATH%"
+del /f "%INSTALLPATH%"darwin*.*
 
 echo.
 echo Removing backup files...
