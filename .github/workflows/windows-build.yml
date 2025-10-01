@@ -24,7 +24,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 'latest'
+          python-version: '3.x'
 
       - name: Install pyright
         run: npm install -g pyright
