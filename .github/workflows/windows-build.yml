@@ -1,11 +1,11 @@
 name: Windows Build & Pyright Check
 
 on:
-  pull_request:
-      branches:
-        - main
-      paths:
-        - '**/*.py'
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.py'  # Only rebuild if Python files changed
 
 jobs:
   build:
@@ -15,16 +15,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
       - name: Set up Node.js (for pyright)
         uses: actions/setup-node@v5
         with:
             # use the latest Node.js available on the runner/tool-cache
             node-version: 'latest'
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
 
       - name: Install pyright
         run: npm install -g pyright
@@ -40,9 +40,10 @@ jobs:
       - name: Build Windows executables
         run: ./win-build.cmd
 
-      - name: Upload build artifacts for debugging
-        uses: actions/upload-artifact@v4
-        with:
-          name: windows-executables
-          path: |
-            *.exe
+      - name: Commit updated .exe files to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add *.exe
+          git commit -m "Update Windows executables from latest merged PR" || echo "No changes to commit"
+          git push origin main
