@@ -39,8 +39,11 @@ echo Patching...
 unlocker.exe
 
 echo.
-rem --- Download and copy tools ---
+rem --- Download tools ---
 call win-helper-functions.cmd get_vmware_tools
+
+rem ---Copy tools ---
+call win-helper-functions.cmd copy_vmware_tools
 
 echo.
 rem --- Start VMware services ---

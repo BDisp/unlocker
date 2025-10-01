@@ -61,6 +61,12 @@ if errorlevel 1 (
     endlocal
     exit /b 1
 )
+
+endlocal & set "INSTALLPATH=%INSTALLPATH%" & set "VMWARE_INSTALLED=%VMWARE_INSTALLED%"
+goto :EOF
+
+:: --- Function: Copy VMware Tools ---
+:copy_vmware_tools
 if defined INSTALLPATH (
     xcopy /F /Y .\tools\darwin*.* "%INSTALLPATH%"
     if errorlevel 1 (

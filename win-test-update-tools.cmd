@@ -19,8 +19,8 @@ pushd %~dp0
 rem --- Detect VMware installation ---
 call win-helper-functions.cmd detect_vmware
 
-rem --- Download tools ---
-call win-helper-functions.cmd get_vmware_tools
+echo Getting VMware Tools...
+python gettools.py
 
 rem ---Copy tools ---
 call win-helper-functions.cmd copy_vmware_tools
