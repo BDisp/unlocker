@@ -23,14 +23,14 @@ Linux用户：Linux版本不包含预装的Python环境，请确保您已安装P
 ### 1. 介绍
 -------
 
-Unlocker 3 适用于 VMware Workstation 11-17 以及 Player 7-17。
+Unlocker 3 适用于 VMware Workstation 11-25H2 以及 Player 7-25H2。
 
 如果您正使用早期版本的 VMWare，请继续使用 Unlocker 1。
 
 Unlocker 3 已对以下情况进行了测试：
 
-* 在 Windows 或 Linux 上的 Workstation 11/12/14/15/16/17
-* 在 Windows 或 Linux 上的 Workstation Player 7/12/14/15/16/17
+* 在 Windows 或 Linux 上的 Workstation 11/12/14/15/16/17/25H2
+* 在 Windows 或 Linux 上的 Workstation Player 7/12/14/15/16/17/25H2
 
 根据所修补的产品，本代码会作出以下修改：
 
@@ -117,5 +117,6 @@ Windows Unlocker使用PyInstaller将Python脚本打包，因此无需安装Pytho
 | 24/03/2025 | 3.0.9 | 修复了 gettools 的 IndexError：列表索引超出范围
 | 28/03/2025 | 3.1.0 | 已修复错误：\VMware\VMware 此时是意外的。
 | 27/09/2025 | 3.1.1 | 移除对 Python 2 的支持。
+| 29/10/2025 | 3.1.2 | 添加 CI 工作流和压缩可执行文件。
 
 (c) 2011-2018 Dave Parsons
