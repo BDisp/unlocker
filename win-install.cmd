@@ -24,6 +24,12 @@ if "%VMWARE_INSTALLED%" == "0" (
     exit /b
 )
 
+rem --- Check if tools are already installed ---
+call win-helper-functions.cmd check_vmware_tools_installed
+if "%CHECK_INSTALLED%"=="1" (
+    exit /b 0
+)
+
 pushd %~dp0
 
 echo.
