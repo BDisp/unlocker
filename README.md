@@ -123,5 +123,6 @@ History
 | 28/03/2025 | 3.1.0 | Fixed Error: \VMware\VMware was unexpected at this time.
 | 27/09/2025 | 3.1.1 | Remove Python 2 support.
 | 29/10/2025 | 3.1.2 | Add CI workflows and compacted executable files.
+| 16/02/2026 | 3.1.3 | Prevents install the tools more than once.
 
 (c) 2011-2018 Dave Parsons
