@@ -65,6 +65,42 @@ if errorlevel 1 (
 endlocal & set "INSTALLPATH=%INSTALLPATH%" & set "VMWARE_INSTALLED=%VMWARE_INSTALLED%"
 goto :EOF
 
+:: ----------------------------------------------------------------------
+:: Function: Check if VMware Tools files are already present in INSTALLPATH
+:: Sets CHECK_INSTALLED=1 if files are found, otherwise 0
+:: Echoes status message
+:: ----------------------------------------------------------------------
+:check_vmware_tools_installed
+:: No setlocal - we want CHECK_INSTALLED visible in caller
+
+set "CHECK_INSTALLED=0"
+
+:: Get directory where the script is running
+set "SCRIPT_DIR=%~dp0"
+:: Remove trailing backslash if present
+if "%SCRIPT_DIR:~-1%"=="\" set "SCRIPT_DIR=%SCRIPT_DIR:~0,-1%"
+
+set "BACKUP_FOLDER=%SCRIPT_DIR%\backup-windows"
+
+echo Checking for backup folder: %BACKUP_FOLDER%
+
+if exist "%BACKUP_FOLDER%" (
+    set "CHECK_INSTALLED=1"
+    echo.
+    echo VMware Tools backup folder found: backup-windows
+    echo Appears to be already present/installed.
+    echo Skipping instalation.
+    echo Run win-uninstall.cmd first to remove tools and restore original files.
+    echo.
+) else (
+    echo No backup-windows folder found in script directory.
+    echo Proceeding with installation...
+    echo.
+)
+
+endlocal & set "CHECK_INSTALLED=%CHECK_INSTALLED%"
+goto :EOF
+
 :: --- Function: Copy VMware Tools ---
 :copy_vmware_tools
 if defined INSTALLPATH (
