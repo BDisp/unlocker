@@ -24,13 +24,13 @@ LINUX USERS: No bundled python for you, but make sure you have python 3.0+ insta
 ### 1. Introduction
 ---------------
 
-Unlocker 3 is designed for VMware Workstation 11-25H2 and Player 7-25H2.
+Unlocker 3 is designed for VMware Workstation 11-26H1 and Player 7-25H2.
 
 If you are using an earlier product please continue using Unlocker 1.
 
 Version 3 has been tested against:
 
-* Workstation 11/12/14/15/16/17/25H2 on Windows and Linux
+* Workstation 11/12/14/15/16/17/25H2/26H1 on Windows and Linux
 * Workstation Player 7/12/14/15/16/17/25H2 on Windows and Linux
 
 The patch code carries out the following modifications dependent on the product
@@ -125,5 +125,6 @@ History
 | 27/09/2025 | 3.1.1 | Remove Python 2 support.
 | 29/10/2025 | 3.1.2 | Add CI workflows and compacted executable files.
 | 16/02/2026 | 3.1.3 | Prevents install unlocker more than once.
+| 16/05/2026 | 3.1.4 | Fixed Windows registry in the VMware 26H1.
 
 (c) 2011-2018 Dave Parsons
