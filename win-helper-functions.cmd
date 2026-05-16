@@ -30,7 +30,7 @@ goto :EOF
 :: --- Function: Detect VMware ---
 :detect_vmware
 set "INSTALLPATH="
-set KeyName="HKLM\SOFTWARE\Wow6432Node\VMware, Inc.\VMware Player"
+set KeyName="HKLM\SOFTWARE\VMware, Inc.\VMware Workstation"
 for /f "tokens=2* delims=	 " %%A in ('REG QUERY %KeyName% /v InstallPath 2^>nul') do set "INSTALLPATH=%%B"
 if not defined INSTALLPATH (
     set "VMWARE_INSTALLED=0"
