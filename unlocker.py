@@ -366,7 +366,7 @@ def main():
 
     elif osname == 'windows':
         reg = ConnectRegistry(None, HKEY_LOCAL_MACHINE)
-        key = OpenKey(reg, r'SOFTWARE\Wow6432Node\VMware, Inc.\VMware Workstation')
+        key = OpenKey(reg, r'SOFTWARE\VMware, Inc.\VMware Workstation')
         vmwarebase_path = QueryValueEx(key, 'InstallPath')[0]
         vmx_path = QueryValueEx(key, 'InstallPath64')[0]
         vmx = joinpath(vmx_path, 'vmware-vmx.exe')
