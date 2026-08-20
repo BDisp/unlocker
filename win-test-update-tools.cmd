@@ -1,6 +1,8 @@
 @echo off
 setlocal ENABLEEXTENSIONS
 
+pushd %~dp0
+
 rem --- Get app version ---
 call win-helper-functions.cmd get_app_version
 echo Get macOS VMware Tools %APPVERSION%
@@ -13,8 +15,6 @@ if "%IS_ADMIN%"=="0" (
     echo Administrator privileges required!
     exit /b 1
 )
-
-pushd %~dp0
 
 rem --- Detect VMware installation ---
 call win-helper-functions.cmd detect_vmware
