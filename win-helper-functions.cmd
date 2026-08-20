@@ -124,6 +124,7 @@ net stop VMwareHostd            >NUL 2>&1
 net stop VMAuthdService         >NUL 2>&1
 net stop VMUSBArbService        >NUL 2>&1
 taskkill /F /IM vmware-tray.exe >NUL 2>&1
+taskkill /F /IM vmware.exe      >NUL 2>&1
 goto :EOF
 
 :: --- Function: Start VMware services ---
