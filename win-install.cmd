@@ -1,5 +1,8 @@
 @echo off
 setlocal ENABLEEXTENSIONS
+
+pushd %~dp0
+
 echo.
 rem --- Get app version ---
 call win-helper-functions.cmd get_app_version
@@ -29,8 +32,6 @@ call win-helper-functions.cmd check_vmware_tools_installed
 if "%CHECK_INSTALLED%"=="1" (
     exit /b 0
 )
-
-pushd %~dp0
 
 echo.
 rem --- Stop VMware services ---
